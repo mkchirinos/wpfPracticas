@@ -13,11 +13,13 @@
         <Menu Height="Auto" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="Auto" Grid.Row="0"></Menu>
         <Menu Height="23" HorizontalAlignment="Left" Margin="12,10,0,0" Name="menu2" VerticalAlignment="Top" Width="200">
             <MenuItem Header="Archivo" >
-                <MenuItem Header="Nuevo" />
+                <MenuItem Header="Nuevo" Click="NuevoMenuItem_Click" />
+                <MenuItem Header="Abrir..."  Click="AbrirMenuItem_Click" />
                 <MenuItem Header="Guardar" Click="GuardarMenuItem_Click"/>
-                <MenuItem Header="Abrir"  Click="AbrirMenuItem_Click" />
+                <MenuItem Header="Guardar como..." Click="GuardarComoMenuItem_Click"/>
+                
             </MenuItem>
-            <MenuItem Header="Salir" />
+            <MenuItem Header="Salir" Click="SalirMenuItem_Click" />
         </Menu>
     </Grid>
 </Window>

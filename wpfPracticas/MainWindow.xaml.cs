@@ -26,6 +26,19 @@ namespace wpfPracticas
         }
         string archivo="";
 
+        private void SalirMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void NuevoMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            archivo = "";
+
+            TextRange range = new TextRange(richTextBox1.Document.ContentStart, richTextBox1.Document.ContentEnd);
+            range.Text = "";
+        }
+
         private void AbrirMenuItem_Click(object sender, RoutedEventArgs e)
         {
             
@@ -59,11 +72,9 @@ namespace wpfPracticas
 
                     }
 
-                }
+             }
             
-                
-                
-            }
+        }
         private void GuardarMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog sdlg = new Microsoft.Win32.SaveFileDialog();
@@ -93,11 +104,35 @@ namespace wpfPracticas
                                                   richTextBox1.Document.ContentEnd);
                         range.Save(stream, DataFormats.Rtf);
                     }
+                    archivo = sdlg.FileName;
                 }
             }
         }
-        }   
+
+        private void GuardarComoMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog sdlg = new Microsoft.Win32.SaveFileDialog();
+
+            sdlg.Filter = "Text File (*.txt)|*.txt|Show All Files (*.*)|*.*";
+            sdlg.FileName = "Untitled";
+            sdlg.Title = "Save As";
+
+            Nullable<bool> result = sdlg.ShowDialog();
+
+
+            if (result == true)
+            {
+
+                using (var stream = sdlg.OpenFile())
+                {
+                    var range = new TextRange(richTextBox1.Document.ContentStart,
+                                              richTextBox1.Document.ContentEnd);
+                    range.Save(stream, DataFormats.Rtf);
+                }
+            }
         }
+    }   
+}
 
        
     
