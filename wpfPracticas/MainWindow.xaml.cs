@@ -24,11 +24,11 @@ namespace wpfPracticas
         {
             InitializeComponent();
         }
-        
+        string archivo="";
 
         private void AbrirMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            string archivo;
+            
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.DefaultExt = ".txt";
             dlg.Filter = "Text documents (.txt)|*.txt";
@@ -55,6 +55,8 @@ namespace wpfPracticas
 
                         fStream.Close();
 
+                        archivo = dlg.FileName;
+
                     }
 
                 }
@@ -62,11 +64,40 @@ namespace wpfPracticas
                 
                 
             }
+        private void GuardarMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog sdlg = new Microsoft.Win32.SaveFileDialog();
 
-       
-            
+            sdlg.Filter = "Text File (*.txt)|*.txt|Show All Files (*.*)|*.*";
+            sdlg.FileName = "Untitled";
+            sdlg.Title = "Save As";
+
+            if (archivo != "")
+            {
+                
+                    var range = new TextRange(richTextBox1.Document.ContentStart,
+                                              richTextBox1.Document.ContentEnd);
+                    File.WriteAllText(archivo,range.Text);
+            }
+            else
+            {
+                Nullable<bool> result = sdlg.ShowDialog();
+
+
+                if (result == true)
+                {
+
+                    using (var stream = sdlg.OpenFile())
+                    {
+                        var range = new TextRange(richTextBox1.Document.ContentStart,
+                                                  richTextBox1.Document.ContentEnd);
+                        range.Save(stream, DataFormats.Rtf);
+                    }
+                }
+            }
+        }
+        }   
         }
 
        
-    }
-
+    
