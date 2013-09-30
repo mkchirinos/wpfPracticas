@@ -10,12 +10,14 @@
         </Grid.RowDefinitions>
         <RichTextBox Grid.Row="1" Height="Auto" HorizontalAlignment="Left" Margin="0" Name="richTextBox1"  Width="Auto" />
         <StatusBar Grid.Row="2" Height="20" HorizontalAlignment="Left" Margin="5,0,0,0" Name="statusBar1" VerticalAlignment="Top" Width="Auto" />
-        <Menu Height="Auto" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="Auto" Grid.Row="0">
-            <MenuItem Header="Archivo" DataContext="{Binding}" InputGestureText="" Height="20" Width="80">
-                <MenuItem Command="ApplicationCommands.New" Header="Nuevo" InputGestureText="" />
-                <MenuItem Command="ApplicationCommands.Save" Header="Guardar" />
-                <MenuItem Command="ApplicationCommands.Open" Header="Abir" InputGestureText="" />
+        <Menu Height="Auto" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="Auto" Grid.Row="0"></Menu>
+        <Menu Height="23" HorizontalAlignment="Left" Margin="12,10,0,0" Name="menu2" VerticalAlignment="Top" Width="200">
+            <MenuItem Header="Archivo" >
+                <MenuItem Header="Nuevo" />
+                <MenuItem Header="Guardar" />
+                <MenuItem Header="Abrir"  Click="AbrirMenuItem_Click" />
             </MenuItem>
+            <MenuItem Header="Salir" />
         </Menu>
     </Grid>
 </Window>
